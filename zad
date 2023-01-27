@@ -1,0 +1,23 @@
+import pymc3 as pm
+
+def bayesian_inference(evidence, query, iterations):
+    with pm.Model() as model:
+        # Tworzenie zmiennych losowych dla sieci Bayesa
+        variables = {}
+        for i in range(n_variables):
+            variables[i] = pm.Bernoulli(f'v{i}', p=0.5)
+
+        # Tworzenie zależności między zmiennymi
+        pm.Potential('e1', ...)
+        pm.Potential('e2', ...)
+        ...
+
+        # Ustawienie dowodów
+        for i, value in evidence.items():
+            variables[i].tag.test_value = value
+
+        # Uruchomienie algorytmu MCMC z próbkowaniem Gibbsa
+        trace = pm.sample(iterations, step=pm.Metropolis(), chains=1)
+        
+    # Zaktualizowana tabela prawdopodobieństw dla zmiennej z zapytania
+    return pm.summary(trace)[query]['mean']
